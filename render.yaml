@@ -1,0 +1,25 @@
+services:
+  - type: worker
+    name: bilim-charx-bot
+    runtime: node
+    plan: starter
+    autoDeploy: true
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: bilim-charx-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: BOT_TOKEN
+        sync: true
+      - key: ADMIN_IDS
+        sync: true
+      - key: DATA_DIR
+        value: /var/data
+      - key: REQUIRE_SUBSCRIPTION
+        value: "true"
+      - key: MASS_BATTLE_QUESTION_COUNT
+        value: "10"
